@@ -1,3 +1,12 @@
+# ******************************************************************************
+#  NOTE: 
+#  File easily fit to memory and fread is reasonably fast to read the all data
+
+#  See ~4x faster (for this amount of data) implementation of plot1() in plot1preproc.R 
+#  with the subsetting done using system commands.
+#  Using R functions grep(pattern, readLines(...)), etc..  yields much slower code 
+#
+# ******************************************************************************
 wd<-"~/Work/Developer/Coursera/DataScience/Exploratory_Data_Analysis/"
 
 plot1<-function()
@@ -6,7 +15,8 @@ plot1<-function()
     setwd(wd)
     colClasses <- c("character", "character", "numeric", "numeric", "numeric", 
                     "numeric", "numeric", "numeric", "numeric")
-    # fast reading of all data with fread (file fits to memory easily)
+    
+    # fast reading of all data with fread (file fits to memory easily):
     powerConsum <- fread(input = "household_power_consumption.txt", sep = ";", 
                          header = TRUE, stringsAsFactors = FALSE, 
                          colClasses = colClasses, na.strings = "?", 
